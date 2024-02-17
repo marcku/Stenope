@@ -55,6 +55,7 @@ class StenopeExtension extends Extension
 
         $container->getDefinition(Builder::class)->replaceArgument('$buildDir', $config['build_dir']);
         $container->getDefinition(Builder::class)->replaceArgument('$filesToCopy', $config['copy']);
+        $container->getDefinition(Builder::class)->replaceArgument('$hiddenRoutes', $config['hidden']);
 
         if ($config['shared_html_crawlers']) {
             $container->setAlias(HtmlCrawlerManagerInterface::class, SharedHtmlCrawlerManager::class);
