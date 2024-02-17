@@ -31,6 +31,7 @@ use Symfony\Component\Routing\Exception\MissingMandatoryParametersException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
+use Symfony\Component\Yaml\Yaml;
 use Twig\Environment;
 
 /**
@@ -55,6 +56,8 @@ class Builder
     private LoggerInterface $logger;
     private Stopwatch $stopwatch;
 
+    private array $hiddenRoutes;
+
     public function __construct(
         RouterInterface $router,
         RouteInfoCollection $routesInfo,
@@ -65,6 +68,7 @@ class Builder
         Sitemap $sitemap,
         string $buildDir,
         array $filesToCopy = [],
+        array $hiddenRoutes = [],
         ?LoggerInterface $logger = null,
         ?Stopwatch $stopwatch = null
     ) {
@@ -77,6 +81,7 @@ class Builder
         $this->sitemap = $sitemap;
         $this->buildDir = $buildDir;
         $this->filesToCopy = $filesToCopy;
+        $this->hiddenRoutes = $hiddenRoutes;
         $this->files = new Filesystem();
         $this->logger = $logger ?? new NullLogger();
         $this->stopwatch = $stopwatch ?? new Stopwatch(true);
@@ -233,7 +238,7 @@ class Builder
 
         $skipped = 0;
         foreach ($routes as $name => $route) {
-            if ($route->isIgnored() || !$route->isGettable()) {
+            if ($route->isIgnored() || !$route->isGettable() || in_array($name, $this->hiddenRoutes)) {
                 $this->logger->debug('Route "{route}" is hidden, skipping.', ['route' => $name]);
                 continue;
             }

@@ -97,6 +97,7 @@ return static function (ContainerConfigurator $container): void {
             '$sitemap' => service(Sitemap::class),
             '$buildDir' => 'The build dir, defined by the extension',
             '$filesToCopy' => 'The files to copy after build, defined by the extension',
+            '$hiddenRoutes' => 'Routes that are skiped while building',
             '$logger' => service(LoggerInterface::class)->nullOnInvalid(),
             '$stopwatch' => service('stenope.build.stopwatch'),
         ])
