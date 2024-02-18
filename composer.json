@@ -1,13 +1,20 @@
 {
-    "name": "marcku/stenope",
-    "description": "Fork of stenope/stenope. Static site builder for Symfony",
+    "name": "stenope/stenope",
+    "description": "Static site builder for Symfony",
     "keywords": ["static", "symfony", "blog"],
     "type": "symfony-bundle",
+    "homepage": "https://github.com/StenopePHP/Stenope",
     "license": "MIT",
     "authors": [
         {
-            "name": "Marc Kunz",
-            "email": "m@rcku.nz"
+            "name": "Thomas Jarrand",
+            "email": "thomas.jarrand@gmail.com",
+            "homepage": "https://thomas.jarrand.fr"
+        },
+        {
+            "name": "Maxime Steinhausser",
+            "email": "maxime.steinhausser@gmail.com",
+            "homepage": "https://github.com/ogizanagi"
         }
     ],
     "autoload": {

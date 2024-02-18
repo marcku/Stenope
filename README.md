@@ -37,6 +37,16 @@ Your Symfony app is now a static website in: `./static`! ✨
 
 **Next:** [learn more about Stenope's content management system](doc/loading-content.md).
 
+### Hide routes
+
+Define routes to skip in global config file.
+
+```yaml
+# config/packages/stenope.yaml
+stenope:
+    hidden: ['route_1', 'route_2']
+```
+
 ## Philosophy and goals
 
 Stenope was designed with these goals in mind:
